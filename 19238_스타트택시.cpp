@@ -1,12 +1,17 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
+int arr[21][21] ={0,};
+int p[21][21]={0,};
+set<int> des[21][21];
+	
 int main() {
 	int n, m, e, cur_x, cur_y, left, cost;
-	int arr[21][21];
+	
 	int my[4] = { -1,1,0,0 };
 	int mx[4] = { 0,0,-1,1 };
 
@@ -22,8 +27,8 @@ int main() {
 	int a, b, c, d;
 	for (int i = 0; i < m; i++) {
 		cin >> a >> b >> c >> d;
-		arr[a][b] = i + 2;
-		arr[c][d] = -(i + 2);
+		p[a][b] = i + 2;
+		des[c][d].insert(i+2);
 	}
 
 	left = m;
@@ -46,7 +51,7 @@ int main() {
 			q.pop();
 			vector<int> temp;
 
-			if (arr[cur_y][cur_x] > 1) {	// passenger
+			if (p[cur_y][cur_x] > 1) {	// passenger
 				if (cost < tmin) {
 					tmin = cost;
 					p_y = cur_y;
@@ -63,9 +68,6 @@ int main() {
 							p_x = cur_x;
 						}
 					}
-				}
-				else {
-					break;
 				}
 			}
 
@@ -88,8 +90,8 @@ int main() {
 		}
 		else {
 			e -= tmin;
-			tar = -1 * arr[p_y][p_x];
-			arr[p_y][p_x] = 0;
+			tar = p[p_y][p_x];
+			p[p_y][p_x] = 0;
 			cur_y = p_y;
 			cur_x = p_x;
 		}
@@ -102,6 +104,7 @@ int main() {
 		v.clear();
 		visited[cur_y][cur_x] = true;
 
+		bool flag = false;
 		while (!q.empty()) {
 			cur_y = q.front().at(0);
 			cur_x = q.front().at(1);
@@ -109,7 +112,8 @@ int main() {
 			q.pop();
 			vector<int> temp;
 
-			if (arr[cur_y][cur_x] == tar) {
+			if (des[cur_y][cur_x].find(tar) != des[cur_y][cur_x].end()) {
+				flag = true;
 				break;
 			}
 
@@ -128,6 +132,8 @@ int main() {
 		}
 
 		if (e - cost < 0) {
+			break;
+		}else if(!flag){
 			break;
 		}
 		else {
