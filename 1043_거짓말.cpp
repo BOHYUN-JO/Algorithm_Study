@@ -50,13 +50,13 @@ int main(){
 		}
 	}
 	for(int i=0; i<lie.size(); i++){
-		truth[root[lie[i]]] = true;
+		truth[find(lie[i])] = true;
 	}
 	
 	int cnt = M;
 	for(int i=0; i<M; i++){
 		for(int j=0; j<v[i].size(); j++){
-			if( truth[ root[v[i][j]] ] ){
+			if( truth[ find(v[i][j]) ] ){
 				cnt--;
 				break;
 			}
