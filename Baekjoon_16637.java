@@ -23,5 +23,4 @@ public class Baekjoon_16637 {
 	}
 	
 	
-
 }
