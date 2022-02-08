@@ -2,7 +2,7 @@
 
 using namespace std;
 
-
+// good
 int main() {
 	long long x,y,z,low,high,mid,temp;
 	cin >> x >> y;
