@@ -1,6 +1,7 @@
 #include <stdio.h>
 #define MAX 51
 
+// change
 typedef struct 
 {
   int key;
