@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+
+//good
 int main()
 {
 	int i,j,N, M, a,b,min =64;
