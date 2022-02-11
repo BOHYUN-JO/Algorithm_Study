@@ -24,6 +24,8 @@ public class Baekjoon_1967 {
 			tree[a].add(new Pair(b,c));
 			tree[b].add(new Pair(a,c));
 		}
+		
+		/* 리프노드 구하기 */
 		for(int i=2; i<=N; i++) {
 			if(tree[i].size() <2) {
 				leaf.add(i);
@@ -31,31 +33,29 @@ public class Baekjoon_1967 {
 			}
 		}
 		
+		/* 모든 리프노드에서 DFS 탐색 */
 		for(int i=0; i<leaf.size(); i++) {
-			dfs(leaf.get(i), 0);
+			visited = new boolean[N+1];
+			visited[leaf.get(i)] = true;
+			dfs(leaf.get(i), 0, leaf.get(i));
 		}
 		
 		System.out.println(ans);
 		
 	}
-	private static void dfs(int idx, int sum) {
-		visited[idx] = true;
-		
-		if(ans < sum) {
-			ans =sum ;
+	private static void dfs(int idx, int sum, int start) {
+		if(tree[idx].size() == 1 && idx != start) {	// 리프노드라면
+			ans = Math.max(ans,sum);
+			return;
 		}
 		
 		for(int i=0; i<tree[idx].size(); i++) {
-			
 			int next = tree[idx].get(i).link;
-			
 			if(!visited[next]) {
 				visited[next] = true;
-				dfs(next, sum+tree[idx].get(i).w);
-				visited[next] = false;
+				dfs(next, sum+tree[idx].get(i).w, start);
 			}	
 		}
-		visited[idx] = false;
 	}
 	
 	static class Pair{
