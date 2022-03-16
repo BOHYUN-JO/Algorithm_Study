@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// wow
 int solution(string word) {
     int answer = 0;
     vector<char> v;
