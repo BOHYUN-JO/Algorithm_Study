@@ -1,4 +1,5 @@
 import java.io.*;
+
 import java.util.*;
 public class Baekjoon_17822 {
 	static int N,M,T;
