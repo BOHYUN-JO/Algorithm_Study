@@ -2,8 +2,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-
-
 public class Baekjoon_1189 {
 	private static int[] my = {-1,1,0,0};
 	private static int[] mx = {0,0,-1,1};
@@ -28,19 +26,18 @@ public class Baekjoon_1189 {
 			}
 		}
 		
+		visited[R-1][0] = true;
 		dfs(arr,R-1,0,1);
-		
+	
 		System.out.println(ans);
 		
 	}
 	
 	public static void dfs(char[][] arr, int y, int x, int cnt) {
-		visited[y][x] = true;
-
 		if(cnt > K) return;
+		
 		if(y == 0 && x == C-1 && cnt == K) {
 			ans++;
-			visited[y][x] = false;
 			return;
 		}
 		
@@ -48,13 +45,11 @@ public class Baekjoon_1189 {
 			int ny = y + my[i];
 			int nx = x + mx[i];
 			if(ny <  0 || nx < 0 || ny >=R || nx >= C) continue;
-			
 			if(!visited[ny][nx] && arr[ny][nx] != 'T') {
+				visited[ny][nx] = true;
 				dfs(arr, ny,nx, cnt+1);
 				visited[ny][nx] = false;
 			}
 		}
-		
 	}
-
 }
