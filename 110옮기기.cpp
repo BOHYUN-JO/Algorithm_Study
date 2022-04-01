@@ -6,7 +6,7 @@
 using namespace std;
 
 string changePos(string str){
-    int idx = 0;	// ??
+    int idx = 0;	// good
     string ret = "";
     stack<char> st;
     int count = 0;
