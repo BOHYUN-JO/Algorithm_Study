@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
+//sd
 int main()
 {
 	int t;
