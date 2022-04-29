@@ -35,4 +35,6 @@ public class Baekjoon_16719 {
 		dfs(idx+1, right);
 		dfs(left, idx-1);
 	}
+	
+	
 }
