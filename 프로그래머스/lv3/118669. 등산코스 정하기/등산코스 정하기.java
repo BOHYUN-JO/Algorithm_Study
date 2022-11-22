@@ -48,7 +48,7 @@ class Solution {
     }
     
     public static void dijkstra(int[] gates, int n, int[] summits){
-        Queue<Pair> q = new LinkedList<>();
+        PriorityQueue<Pair> q = new PriorityQueue<>( (o1, o2) -> o1.w - o2.w );
         
         int[] dist = new int[n+1];
         Arrays.fill(dist, Integer.MAX_VALUE);
