@@ -12,14 +12,12 @@ class Solution {
     }
     
     static ArrayList<Node>[] graph;
-    static boolean[] visited;
     static int[] dist;
         
     public int[] solution(int n, int[][] roads, int[] sources, int destination) {
         int[] answer = new int[sources.length];
         
         graph = new ArrayList[n+1];
-        visited = new boolean[n+1];
         dist = new int[n+1];
         Arrays.fill(dist, Integer.MAX_VALUE);
         
@@ -58,9 +56,9 @@ class Solution {
             Node cur = pq.poll();
             
             for(Node next : graph[cur.v]){
-                if(!visited[next.v] && dist[next.v] > cur.cost + next.cost){
+                if( dist[next.v] > cur.cost + next.cost){
                     dist[next.v] = cur.cost + next.cost;
-                    visited[next.v] = true;
+
                     pq.add(new Node(next.v, dist[next.v]));
                 }
             }
