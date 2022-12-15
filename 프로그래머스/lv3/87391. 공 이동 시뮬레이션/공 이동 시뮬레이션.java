@@ -5,11 +5,11 @@ class Solution {
     public long solution(int n, int m, int x, int y, int[][] queries) {
         long answer = 0;
         // 좌상단
-        long x1 = x;
-        long y1 = y;
+        int x1 = x;
+        int y1 = y;
         // 우하단
-        long x2 = x;
-        long y2 = y;
+        int x2 = x;
+        int y2 = y;
         
         for(int i=queries.length-1; i>=0; i--){
             int dir = queries[i][0];
@@ -56,7 +56,7 @@ class Solution {
             if(x1 >= n || y1 >= m || x2 <0 || y2 < 0 ) return 0;
         }
         
-        answer = Math.abs(x2-x1+1)*Math.abs(y2-y1+1);
+        answer = ((long)x2-(long)x1+1)*((long)y2-(long)y1+1);
                             
         return answer;
     }
