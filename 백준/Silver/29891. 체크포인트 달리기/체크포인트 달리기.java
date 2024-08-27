@@ -12,12 +12,12 @@ public class Main {
 		int k = Integer.parseInt(st.nextToken());
 		long ans = 0;
 		
-		List<Long> plus = new ArrayList<>();
-		List<Long> minus = new ArrayList<>();
+		PriorityQueue<Integer> plus = new PriorityQueue<>(Collections.reverseOrder());
+		PriorityQueue<Integer> minus = new PriorityQueue<>(Collections.reverseOrder());
 		
 		for(int i=0; i<n; i++) {
 			st = new StringTokenizer(br.readLine());
-			long num = Long.parseLong(st.nextToken());
+			int num = Integer.parseInt(st.nextToken());
 			if(num >=0) {
 				plus.add(num);
 			}else {
@@ -25,37 +25,25 @@ public class Main {
 			}
 		}
 		
-		Collections.sort(plus);
-		Collections.sort(minus);
-		
-		int idx = 0;
 		int cnt = 0;
-		for(long num : plus) {
-			if(idx == plus.size()-1) {
-				ans += num*2;
-				break;
+		while(!plus.isEmpty()) {
+			ans += plus.peek()*2;
+			cnt = k;
+			
+			while(!plus.isEmpty() && cnt-- >0) {
+				plus.poll();
 			}
-			cnt++;
-			if(cnt == k) {
-				cnt = 0;
-				ans += num*2;
-			}
-			idx++;
 		}
 		
-		idx = 0; 
-		for(long num : minus) {
-			if(idx == minus.size()-1) {
-				ans += num*2;
-				break;
+		while(!minus.isEmpty()) {
+			ans += minus.peek()*2;
+			cnt = k;
+			
+			while(!minus.isEmpty() && cnt-- >0) {
+				minus.poll();
 			}
-			cnt++;
-			if(cnt == k) {
-				cnt = 0;
-				ans += num*2;
-			}
-			idx++;
 		}
+		
 		
 		System.out.println(ans);
 	}
